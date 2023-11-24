@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Set the JAVA_HOME environment variable
+export JAVA_HOME="C:/Program Files/Java/jdk1.8.0_202"
+
+# Update the PATH to include Maven and Java
+export PATH="$JAVA_HOME/bin:D:/Tools/apache-maven-3.6.3/bin:$PATH"
+
+# Run PMD checks with the full path to mvn
+D:/Tools/apache-maven-3.6.3/bin/mvn pmd:check
+
+# Check the exit code of the PMD command
+if [ $? -ne 0 ]; then
+    echo "PMD checks failed. Commit aborted."
+    exit 1
+fi
+
+# If PMD checks pass, allow the commit
+exit 0
+
